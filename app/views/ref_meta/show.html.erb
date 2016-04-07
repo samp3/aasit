@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ref:</strong>
+  <%= @ref_metum.ref_id %>
+</p>
+
+<p>
+  <strong>Refattribute:</strong>
+  <%= @ref_metum.ref_attribute.name %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @ref_metum.value %>
+</p>
+
+<%= link_to 'Edit', edit_ref_metum_path(@ref_metum) %> |
+<%= link_to 'Back', ref_meta_path %>

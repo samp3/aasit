@@ -1,0 +1,29 @@
+<%= form_for(@ref_metum) do |f| %>
+  <% if @ref_metum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ref_metum.errors.count, "error") %> prohibited this ref_metum from being saved:</h2>
+
+      <ul>
+      <% @ref_metum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :ref_id %><br>
+    <%= f.select :ref_id, options_from_collection_for_select(@refs,:id,:slug) %>
+  </div>
+  <div class="field">
+    <%= f.label :ref_attribute_id %><br>
+    <%= f.select :ref_attribute_id, options_from_collection_for_select(@attrs,:id,:name) %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br>
+    <%= f.text_field :value %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

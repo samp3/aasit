@@ -1,0 +1,25 @@
+<%= form_for(@ref) do |f| %>
+  <% if @ref.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ref.errors.count, "error") %> prohibited this ref from being saved:</h2>
+
+      <ul>
+      <% @ref.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :slug %><br>
+    <%= f.text_field :slug %>
+  </div>
+  <div class="field">
+    <%= f.label :reftype_id %><br>
+    <%= f.select :reftype_id, options_from_collection_for_select(@types,:id,:name) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
