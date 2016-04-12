@@ -18,3 +18,4 @@ end
 types.each do |type|
   f = Reftype.new(name:type)
   f.save
+end
