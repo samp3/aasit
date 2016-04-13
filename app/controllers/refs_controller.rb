@@ -22,18 +22,21 @@ class RefsController < ApplicationController
 
   # GET /refs/1/edit
   def edit
+
+    @types = Reftype.all
   end
 
   # POST /refs
   # POST /refs.json
   def create
     @ref = Ref.new(ref_params)
-
+    @types = Reftype.all
     respond_to do |format|
       if @ref.save
         format.html { redirect_to @ref, notice: 'Ref was successfully created.' }
         format.json { render :show, status: :created, location: @ref }
       else
+        @types = Reftype.all
         format.html { render :new }
         format.json { render json: @ref.errors, status: :unprocessable_entity }
       end
