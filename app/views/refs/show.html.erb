@@ -1,14 +1,22 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Title:</strong>
-  <%= @ref.slug %>
+  <h1> <%= @ref.slug %></h1>
+
 </p>
 
 <p>
-  <strong>Reftype:</strong>
+  <strong>Tyyppi:</strong>
   <%= @ref.reftype.name %>
 </p>
+<h2>Sisältö</h2>
+<% @meta.each do |field| %>
+    <p><strong> <%= field.ref_attribute.name %> </strong>: <%= field.value %> <%= link_to 'Edit', edit_ref_metum_path(field) %> |</p>
+    <% end %>
+<p>
+<hr>
+  <%= link_to 'Edit', edit_ref_path(@ref) %> |
+  <%= link_to 'Back', refs_path %>
 
-<%= link_to 'Edit', edit_ref_path(@ref) %> |
-<%= link_to 'Back', refs_path %>
+</p>
+

@@ -10,6 +10,7 @@ class RefMetaController < ApplicationController
   # GET /ref_meta/1
   # GET /ref_meta/1.json
   def show
+
   end
 
   # GET /ref_meta/new
@@ -21,6 +22,8 @@ class RefMetaController < ApplicationController
 
   # GET /ref_meta/1/edit
   def edit
+    @refs = Ref.where("id = :id", {id: @ref_metum.ref_id})
+    @attrs = RefAttribute.all
   end
 
   # POST /ref_meta
@@ -30,9 +33,11 @@ class RefMetaController < ApplicationController
 
     respond_to do |format|
       if @ref_metum.save
-        format.html { redirect_to @ref_metum, notice: 'Ref metum was successfully created.' }
+        format.html { redirect_to @ref_metum.ref, notice: 'Ref metum was successfully created.' }
         format.json { render :show, status: :created, location: @ref_metum }
       else
+        @refs = Ref.all
+        @attrs = RefAttribute.all
         format.html { render :new }
         format.json { render json: @ref_metum.errors, status: :unprocessable_entity }
       end

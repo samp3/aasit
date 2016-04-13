@@ -16,7 +16,7 @@
     <% @ref_meta.each do |ref_metum| %>
       <tr>
         <td><%= ref_metum.ref_id %></td>
-        <td><%= ref_metum.ref_attribute.name %></td>
+        <td><%= ref_metum.ref_attribute.name if ref_metum.ref_attribute %></td>
         <td><%= ref_metum.value %></td>
         <td><%= link_to 'Show', ref_metum %></td>
         <td><%= link_to 'Edit', edit_ref_metum_path(ref_metum) %></td>

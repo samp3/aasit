@@ -10,6 +10,7 @@ class RefsController < ApplicationController
   # GET /refs/1
   # GET /refs/1.json
   def show
+    @meta = @ref.ref_metum
   end
 
   # GET /refs/new

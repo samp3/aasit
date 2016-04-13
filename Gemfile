@@ -49,7 +49,13 @@ group :production do
    gem 'rails_12factor'
 end
 group :test do
-   gem 'cucumber-rails', :require => false
+   gem 'cucumber-rails', require: false
    gem 'capybara'
+   gem 'selenium-webdriver'
+   gem 'factory_girl_rails'
    gem 'database_cleaner'
+   gem 'rspec-expectations'
+   gem 'rspec-core'
+   gem 'simplecov', require: false
 end
+gem 'coveralls', require: false
