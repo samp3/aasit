@@ -59,3 +59,4 @@ group :test do
    gem 'simplecov', require: false
 end
 gem 'coveralls', require: false
+gem 'travis'
