@@ -19,3 +19,14 @@ types.each do |type|
   f = Reftype.new(name:type)
   f.save
 end
+ref = Ref.create!(slug:'W04', reftype_id:1)
+
+RefMetum.create!(ref_id:ref.id,ref_attribute_id:3, value: "Whittington, Keith J.")
+RefMetum.create!(ref_id:ref.id,ref_attribute_id:21, value: "Infusing active learning into introductory programming courses")
+RefMetum.create!(ref_id:ref.id,ref_attribute_id:11, value: "J. Comput. Small Coll.")
+RefMetum.create!(ref_id:ref.id,ref_attribute_id:23, value: "19")
+RefMetum.create!(ref_id:ref.id,ref_attribute_id:15, value: "5")
+RefMetum.create!(ref_id:ref.id,ref_attribute_id:24, value: "2004")
+RefMetum.create!(ref_id:ref.id,ref_attribute_id:17, value: "249--259")
+RefMetum.create!(ref_id:ref.id,ref_attribute_id:18, value: "Consortium for Computing Sciences in Colleges")
+RefMetum.create!(ref_id:ref.id,ref_attribute_id:1, value: "USA")
