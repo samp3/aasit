@@ -13,6 +13,7 @@ Feature: Käyttäjänä voin lisätä järjestelmään BibTeX-viitteitä ihmisel
     When Käyttäjä lisää viitteeseen "TT01" attribuutin "author" arvolla "Testaaja"
     Then Järjestelmä palauttaa HTTP statuskoodin "201"
 
+
   Scenario: Luodaan viite ilman oikeita tietoja
     When Käyttäjä luon viitteen ilman lyhyt nimeä
     And Käyttäjä luon viitteen ilman tyyppiä

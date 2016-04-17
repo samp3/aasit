@@ -26,7 +26,7 @@ Given(/^Järjestelmässä on viite, jonka lyhytnimi on "([^"]*)" ja tyyppi on "(
   step "Käyttäjä luo viitteen, jonka lyhytnimi on \"#{slug}\" ja tyyppi on \"#{type}\""
 end
 When(/^Käyttäjä lisää viitteeseen "([^"]*)" attribuutin "([^"]*)" arvolla "([^"]*)"$/) do |slug, attribute, value|
-  RefMetum.delete_all
+
   expect {
     params = { ref_id: Ref.find_by_slug(slug).id,
                ref_attribute_id: RefAttribute.find_by_name(attribute).id,
