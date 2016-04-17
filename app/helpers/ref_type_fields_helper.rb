@@ -1,0 +1,2 @@
+module RefTypeFieldsHelper
+end

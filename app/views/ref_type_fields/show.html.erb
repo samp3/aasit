@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Reftype:</strong>
+  <%= @ref_type_field.reftype_id %>
+</p>
+
+<p>
+  <strong>Ref attribute:</strong>
+  <%= @ref_type_field.ref_attribute_id %>
+</p>
+
+<p>
+  <strong>Obligatory:</strong>
+  <%= @ref_type_field.obligatory %>
+</p>
+
+<%= link_to 'Edit', edit_ref_type_field_path(@ref_type_field) %> |
+<%= link_to 'Back', ref_type_fields_path %>

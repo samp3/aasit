@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Ref Type Fields</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Reftype</th>
+      <th>Ref attribute</th>
+      <th>Obligatory</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ref_type_fields.each do |ref_type_field| %>
+      <tr>
+        <td><%= ref_type_field.reftype_id %></td>
+        <td><%= ref_type_field.ref_attribute_id %></td>
+        <td><%= ref_type_field.obligatory %></td>
+        <td><%= link_to 'Show', ref_type_field %></td>
+        <td><%= link_to 'Edit', edit_ref_type_field_path(ref_type_field) %></td>
+        <td><%= link_to 'Destroy', ref_type_field, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ref type field', new_ref_type_field_path %>
