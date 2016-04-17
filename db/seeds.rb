@@ -11,6 +11,10 @@ fields = ['address','annote','author','booktitle','chapter','crossref','edition'
 types = ['article','book','booklet','conference','inbook','incollection','inproceedings','manual','mastersthesis',
          'misc','phdthesis','proceedings','techreport','unpublished']
 
+reftypefields = Hash.new
+reftypefields["article"] = {"Required":['author','title','journal','year','volume'],
+                            "Optional":['number','pages','month','note','key']}
+
 fields.each do |field|
   f = RefAttribute.new(name:field)
   f.save
@@ -30,3 +34,20 @@ RefMetum.create!(ref_id:ref.id,ref_attribute_id:24, value: "2004")
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:17, value: "249--259")
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:18, value: "Consortium for Computing Sciences in Colleges")
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:1, value: "USA")
+
+reftypefields.keys.each do |type|
+
+  reftypefields[type].keys.each do |h|
+    reftypefields[type][h].each do |field|
+       t = Reftype.find_by_name(type)
+       f = RefAttribute.find_by_name(field)
+
+       if h == :Required
+         RefTypeField.create!(ref_attribute_id: f.id, reftype_id: t.id, obligatory: 1)
+       elsif h == :Optional
+         RefTypeField.create!(ref_attribute_id: f.id, reftype_id: t.id, obligatory: 0)
+       end
+     end
+  end
+
+end
