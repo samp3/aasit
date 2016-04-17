@@ -1,1 +1,1 @@
-json.extract! @reftype, :id, :name, :created_at, :updated_at
+json.extract! @reftype, :id, :name, :requiredFieldsIds,:optionalFieldsIds, :created_at, :updated_at
