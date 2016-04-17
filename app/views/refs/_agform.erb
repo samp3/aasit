@@ -1,0 +1,121 @@
+<script>
+  refType = 1;
+  optionalFields = [];
+  requiredFields = [];
+
+  removeFields = function(){
+    $("h1").fadeOut();
+    refType = $("select[name='ref[reftype_id]']").val();
+    $("input[name='ref[slug]']").replaceWith(function() { return $('<h1>' + this.value+ '</h1>')});
+    var text = $("#ref_reftype_id").find("option:selected").text();
+    $("select[name='ref[reftype_id]']").replaceWith(function() { return $('<span>' + text +'</span>')});
+    $("#createReff").fadeOut();
+    $("label[for='ref_slug']").fadeOut();
+  };
+  processAttributeData = function(ref_id,ref_attribute_id,meta_div_id){
+    history.pushState('data', '', '/refs/'+ref_id); //Huijaa url muistuttamaan show-näkymää
+      $.get( '/ref_attributes/'+ref_attribute_id+'.json',
+          {}, function(data){
+            appendMetaField(ref_attribute_id,data.name,ref_id,meta_div_id);
+          },"json");
+  };
+  insertAttributeFields = function(data){
+    requiredFields.forEach(function(ref_attribute_id){
+      processAttributeData(data.id,ref_attribute_id,"#required");
+    });
+    optionalFields.forEach(function(ref_attribute_id){
+      processAttributeData(data.id,ref_attribute_id,"#optional");
+    });
+  };
+
+  updateAttributeIDs = function(d){
+    $.get( '/reftypes/'+refType+'.json',
+        {}, function(data){
+          optionalFields = data["optionalFieldsIds"];
+          requiredFields = data["requiredFieldsIds"];
+          insertAttributeFields(d);
+        },"json");
+  };
+
+  appendMetaField = function(id,name,ref_id,meta_div_id){
+    div_id = name+id;
+    $(meta_div_id).append('<div id=\"'+div_id+'\"></div>');
+    select_name = "s"+name;
+    $("#"+div_id).append('<select name=\"'+select_name+'\"><option value=\"'+id+'\">'+name+'</option></select>');
+    $("#"+div_id).append('<input name=\"value_'+name+'\">');
+    $("#"+div_id).append('<button id=\"b_'+ name+'\" name=\"b_'+name+'\">Lisää '+name+'</button>');
+    $("#b_"+ name).click(postNewRefMetum);
+  }
+  postNewRefMetum = function(event){
+    $.post( '/ref_meta.json',
+        {ref_metum:{
+          ref_id: parseInt(ref_id),
+          ref_attribute_id: parseInt($("select[name="+select_name+"]").val()),
+          value:$("input[name=value_"+name+"]").val() },
+          authenticity_token: $("input[name='authenticity_token']").val()
+        }, function(){
+          $("#b_"+ name).replaceWith(function () {return $('<span>OK</span>')
+          });
+        },"json");
+  };
+  postNewRef = function (event){
+    $.post( '/refs.json',
+        {ref:{
+          slug: $("input[name='ref[slug]']").val(),
+          reftype_id: parseInt($("select[name='ref[reftype_id]']").val())},
+          authenticity_token: $("input[name='authenticity_token']").val()
+        }, function(data){
+          removeFields();
+          appendMetaHeaders();
+          updateAttributeIDs(data);
+        },"json");
+  };
+  appendMetaHeaders = function (){
+    $("#required").append("<h2>Required</h2>");
+    $("#optional").append("<h2>Optional</h2>");
+  }
+  $(function() {
+    $('#createReff').click(postNewRef);
+    //Suoritetaan JQuery-jutut jos painaa enteriä
+    $('#new_ref').on('keyup keypress', function(e) {
+      var keyCode = e.keyCode || e.which;
+      if (keyCode === 13) {
+        e.preventDefault();
+        processNewRef();
+        return false;
+      }
+    });
+  });
+</script>
+
+<section>
+<%= form_for(@ref) do |f| %>
+    <% if @ref.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@ref.errors.count, "error") %> prohibited this ref from being saved:</h2>
+
+          <ul>
+            <% @ref.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :slug %><br>
+      <%= f.text_field :slug %>
+    </div>
+      <%= f.select :reftype_id, options_from_collection_for_select(@types,:id,:name) %>
+    <div class="actions">
+
+      <% f.submit %>
+
+    </div>
+<% end %>
+  <button id="createReff" name="commit" value="Luo viite" >Create Ref </button>
+  <div id="meta">
+  <div id="required"></div>
+  <div id="optional"></div>
+  </div>
+</section>
