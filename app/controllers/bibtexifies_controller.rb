@@ -7,7 +7,7 @@ class BibtexifiesController < ApplicationController
        end
      end
     response.headers["Content-Type"] = 'application/x-bibtex'
-    response.headers["Content-Disposition"] = ' attachment; filename=sig.bib'
+    response.headers["Content-Disposition"] = ' attachment; filename=sigproc.bib'
     render 'bibtex',:layout => false
   end
 end
