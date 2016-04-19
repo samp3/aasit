@@ -20,6 +20,21 @@ types.each do |type|
   f = Reftype.create!(name:type)
 end
 ref = Ref.create!(slug:'W04', reftype_id:Reftype.find_by_name('article').id)
+
+Ref.create!(slug:'SWEBOK', reftype_id:Reftype.find_by_name('article').id)
+Ref.create!(slug:'BA04', reftype_id:Reftype.find_by_name('article').id)
+Ref.create!(slug:'scrum', reftype_id:Reftype.find_by_name('article').id)
+Ref.create!(slug:'Martin09', reftype_id:Reftype.find_by_name('article').id)
+Ref.create!(slug:'fox', reftype_id:Reftype.find_by_name('article').id)
+Ref.create!(slug:'Begel_2008', reftype_id:Reftype.find_by_name('article').id)
+Ref.create!(slug:'royce07', reftype_id:Reftype.find_by_name('article').id)
+
+
+
+
+
+
+
 #Luodaan esimerkkiviite
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('author').id, value: 'Whittington, Keith J.')
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('title').id, value: 'Infusing active learning into introductory programming courses')
@@ -36,8 +51,8 @@ reftypefields.keys.each do |type|
 
   reftypefields[type].keys.each do |h|
     reftypefields[type][h].each do |field|
-      ref_attribute_id = Reftype.find_by_name(type).id
-      reftype_id= RefAttribute.find_by_name(field).id
+      ref_attribute_id =RefAttribute.find_by_name(field).id
+      reftype_id= Reftype.find_by_name(type).id
 
        if h == :required
          RefTypeField.create!(ref_attribute_id: ref_attribute_id, reftype_id: reftype_id, obligatory: 1)
