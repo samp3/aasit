@@ -9,6 +9,6 @@ deploy:
   provider: heroku
   api_key:
     secure: smv3DSjcxyQ3rTub9J7ELHuyRxFnYgTPIgayWfD/1YLbvYXlkSFXmPrql3ABH1t1AOxhQY033juHjDtgOGZj6S8iG9I/rD/LqIBgssaCPShOkK+tMJosIFG5eBqVtGdz//uioBEhXrZ/9DpkjP7U+4BQa28WxT4Iub+IVJbX1V9/2XKWzKKF1Uargyrjw4jIjoUWaxHgdOJqw/83rCW4v3L/2MeZ+IHjfqV8WCxY1VEza2FU0JDJQXJ4PxrGsILD18aAE7jWjyZly3KfCtxTl/dEd0SuRNxmQ9DMkVxzyqXNXjxGMb4jxduVNrfZG9laQCX2am9JiTEwTGHKb9YFagixV1/34eMTua3iaxgCBnSfhKsBuo0CIM3rCqB/NRVgPJORJvwZgiQqNas5e6FOD4jUYPvGmP6oNY1UrMhXdw298BB8VFesNiW9Z5U7MJmXtPO1EDCPvxRyX2LUSEfmGG5DztgY5o7+6wbNfFxniy0yYHRvpTgM33bMA8VQzo11Y3xPXhj7xUcql6NBhYxy8ncOve4BemtkL6eJsu9OoDWec2WBKDKSWsJ83z+zJ4YJVge2uVwTIVChx0HbLdyA+yZVXq2HwrUtR4agc063o5/MYTqLuUE/Eg3Zwa0+Q0Kq+3uMmhnd3tXyuCJQAYcrxnNKUg/JAOemNK4Sir39KtI=
-  app:boiling-depths-20317
+  app: boiling-depths-20317
   on:
      repo: samp3/aasit
