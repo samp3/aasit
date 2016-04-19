@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  #resources :bibtexifies
   resources :ref_type_fields
   resources :ref_meta
   resources :ref_attributes
@@ -9,7 +10,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
    root 'refs#index'
-
+  get 'bibtexify/' => 'bibtexifies#download'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
