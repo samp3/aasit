@@ -2,7 +2,7 @@
   refType = 1;
   optionalFields = [];
   requiredFields = [];
-
+  g_ref_id = -1;
   removeFields = function(){
     $("h1").fadeOut();
     refType = $("select[name='ref[reftype_id]']").val();
@@ -44,19 +44,18 @@
     $("#"+div_id).append('<select name=\"'+select_name+'\"><option value=\"'+id+'\">'+name+'</option></select>');
     $("#"+div_id).append('<input name=\"value_'+name+'\">');
     $("#"+div_id).append('<button id=\"b_'+ name+'\" name=\"b_'+name+'\">Lisää '+name+'</button>');
-    $("#b_"+ name).click(postNewRefMetum);
-  }
-  postNewRefMetum = function(event){
-    $.post( '/ref_meta.json',
-        {ref_metum:{
-          ref_id: parseInt(ref_id),
-          ref_attribute_id: parseInt($("select[name="+select_name+"]").val()),
-          value:$("input[name=value_"+name+"]").val() },
-          authenticity_token: $("input[name='authenticity_token']").val()
-        }, function(){
-          $("#b_"+ name).replaceWith(function () {return $('<span>OK</span>')
-          });
-        },"json");
+    $("#b_"+ name).click(function(event){
+      $.post( '/ref_meta.json',
+          {ref_metum:{
+            ref_id: parseInt(ref_id),
+            ref_attribute_id: parseInt($("select[name=s"+name+"]").val()),
+            value: $("input[name=value_"+name+"]").val() },
+            authenticity_token: $("input[name='authenticity_token']").val()
+          }, function(){
+            $("#b_"+ name).replaceWith(function () {return $('<span>OK</span>')
+            });
+          },"json");
+    });
   };
   postNewRef = function (event){
     $.post( '/refs.json',

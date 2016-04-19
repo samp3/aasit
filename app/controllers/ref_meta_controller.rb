@@ -1,5 +1,6 @@
 class RefMetaController < ApplicationController
   before_action :set_ref_metum, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /ref_meta
   # GET /ref_meta.json
@@ -29,6 +30,7 @@ class RefMetaController < ApplicationController
   # POST /ref_meta
   # POST /ref_meta.json
   def create
+
     @ref_metum = RefMetum.new(ref_metum_params)
 
     respond_to do |format|
