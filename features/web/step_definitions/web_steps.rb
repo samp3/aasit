@@ -37,8 +37,8 @@ Given(/^Järjestelmässä on artikkeli lyhytnimellä "([^"]*)"$/) do |slug|
   Ref.create!(slug: slug, reftype_id: 1)
 end
 And(/^Painaa nappia "destroy"$/) do
-  pending
-  #click_link('Destroy')
+
+  click_link('Poista')
 end
 Then(/^Kyseinen viite poistuu järjestelmästä$/) do
   expect(page).not_to have_content("Slug can't be blank")
