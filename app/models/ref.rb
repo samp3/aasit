@@ -13,7 +13,16 @@ class Ref < ActiveRecord::Base
     Hash[ref_metum.joins(:ref_attribute).pluck(:name, :value)]
   end
   def to_s
-    ""
-
+    output = "@#{self.reftype.name}{#{slug},\n"
+    self.ref_metum.each do | meta|
+      output += meta.to_s
+      if meta == self.ref_metum.last
+        output += "\n"
+      else
+        output += ",\n"
+      end
+    end
+    output += "}\n"
+    return output
   end
 end

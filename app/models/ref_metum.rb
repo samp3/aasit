@@ -6,6 +6,7 @@ class RefMetum < ActiveRecord::Base
   validates :ref_id, presence: true
   validates :value , presence: true
   def to_s
-    ''.gsub('ä','\"{a}').gsub('ö','\"{o}')
+    output = self.ref_attribute.name + ' = { '+ self.value + ' }'
+    return output.gsub('ä','\"{a}').gsub('ö','\"{o}')
   end
 end
