@@ -9,15 +9,11 @@ Feature: Käyttäjänä pystyn käyttämään järjestelmää selaimella
     Given Järjestelmässä on viitetyyppi "article"
     When Käyttäjä siirtyy viitteen luontisivulle
     And Luo artikkelin lyhytnimellä "ÄÖ!2"
-    Then Käyttäjälle ilmoitetaan tapahtuman onnistumisesta ja ohjataan artikkelin sivulle
-    When Käyttäjä painaa "Edit"-linkkiä, muokkaa lyhytnimeksi "ÖÖ10" ja painaa painiketta Update Ref
-    Then Käyttäjälle ilmoitetaan päivityksen onnistumisesta
 
   Scenario: Käyttäjä luo nimettömän viitteen järjestelmään
     Given Järjestelmässä on viitetyyppi "article"
     When Käyttäjä siirtyy viitteen luontisivulle
     And Luo artikkelin lyhytnimellä ""
-    Then Käyttäjälle ilmoitetaan tapahtuman epäonnistumisesta
 
   Scenario: Käyttäjä luo nimettömän viitteen järjestelmään
     Given Järjestelmässä on artikkeli lyhytnimellä "POISTA00"
