@@ -1,6 +1,6 @@
 class Ref < ActiveRecord::Base
   belongs_to :reftype
-  has_many :ref_metum
+  has_many :ref_metum, dependent: :destroy
 
   validates :reftype_id, presence: true
   validates :slug , presence: true
@@ -11,5 +11,9 @@ class Ref < ActiveRecord::Base
   end
   def fields
     Hash[ref_metum.joins(:ref_attribute).pluck(:name, :value)]
+  end
+  def to_s
+    ""
+
   end
 end

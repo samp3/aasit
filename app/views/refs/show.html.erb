@@ -11,7 +11,7 @@
 </p>
 <h2>Sisältö</h2>
 <% @meta.each do |field| %>
-    <p><strong> <%= field.ref_attribute.name %> </strong>: <%= field.value %> <%= link_to 'Edit', edit_ref_metum_path(field) %> |</p>
+    <p><strong> <%= field.ref_attribute.name  %> </strong>: <%= field.value %> <%= link_to 'Edit', edit_ref_metum_path(field) %> |</p>
     <% end %>
 <p>
 <hr>

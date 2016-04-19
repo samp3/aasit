@@ -1,7 +1,7 @@
 class Reftype < ActiveRecord::Base
    belongs_to :ref
    validates :name , presence: true
-   has_many :ref_type_fields
+   has_many :ref_type_fields, dependent: :destroy
    has_many :ref_attributes, through: :ref_type_fields
 
   def requiredFields
