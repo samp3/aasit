@@ -29,6 +29,7 @@ RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('year'
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('pages').id, value: '249--259')
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('publisher').id, value: 'Consortium for Computing Sciences in Colleges')
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('address').id, value: 'USA')
+
 swebok = Ref.create(slug:'SWEBOK', reftype_id:Reftype.find_by_name('book').id)
 RefMetum.create!(ref_id:swebok.id,ref_attribute_id:RefAttribute.find_by_name('publisher').id, value: 'IEEE Computer Society')
 RefMetum.create!(ref_id:swebok.id,ref_attribute_id:RefAttribute.find_by_name('editor').id, value: 'IAbram, Aman and More, James W. and Bourgue Pierre and Dupuis Robert')
@@ -49,6 +50,7 @@ RefMetum.create!(ref_id: royce70.id,ref_attribute_id:RefAttribute.find_by_name('
 RefMetum.create!(ref_id: royce70.id,ref_attribute_id:RefAttribute.find_by_name('year').id, value: '1970')
 RefMetum.create!(ref_id: royce70.id,ref_attribute_id:RefAttribute.find_by_name('month').id, value: 'August')
 RefMetum.create!(ref_id: royce70.id,ref_attribute_id:RefAttribute.find_by_name('publisher').id, value: 'Addison-Wesley Professional')
+
 ref= Ref.create(slug:'scrum', reftype_id:Reftype.find_by_name('article').id)
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('author').id, value: 'Whittington, Keith J.')
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('title').id, value: 'Infusing active learning into introductory programming courses')
@@ -59,7 +61,8 @@ RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('year'
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('pages').id, value: '249--259')
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('publisher').id, value: 'Consortium for Computing Sciences in Colleges')
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('address').id, value: 'USA')
-swebok = Ref.create(slug:'Martin09', reftype_id:Reftype.find_by_name('article').id)
+
+swebok = Ref.create(slug:'Martin09', reftype_id:Reftype.find_by_name('book').id)
 RefMetum.create!(ref_id:swebok.id,ref_attribute_id:RefAttribute.find_by_name('publisher').id, value: 'IEEE Computer Society')
 RefMetum.create!(ref_id:swebok.id,ref_attribute_id:RefAttribute.find_by_name('editor').id, value: 'IAbram, Aman and More, James W. and Bourgue Pierre and Dupuis Robert')
 RefMetum.create!(ref_id:swebok.id,ref_attribute_id:RefAttribute.find_by_name('year').id, value: '2004}')
@@ -81,6 +84,7 @@ RefMetum.create!(ref_id: begel.id,ref_attribute_id:RefAttribute.find_by_name('au
 RefMetum.create!(ref_id: begel.id,ref_attribute_id:RefAttribute.find_by_name('title').id, value: 'GExtreme Programming Explained: Embrace Change (2nd Edition)')
 RefMetum.create!(ref_id: begel.id,ref_attribute_id:RefAttribute.find_by_name('year').id, value: '1970')
 RefMetum.create!(ref_id: begel.id,ref_attribute_id:RefAttribute.find_by_name('publisher').id, value: 'Amc')
+
 ref = Ref.create(slug:'royce07', reftype_id:Reftype.find_by_name('article').id)
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('author').id, value: 'Whittington, Keith J.')
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('title').id, value: 'Infusing active learning into introductory programming courses')
