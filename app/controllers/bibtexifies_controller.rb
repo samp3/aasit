@@ -7,7 +7,7 @@ class BibtexifiesController < ApplicationController
      #  end
      #end
     #Otetaan vain ne viitteet joiden pakolliset kentät on asetettu
-    
+    @refs = Ref.all.select {|ref| ref.requiredFields?}
 
     response.headers["Content-Type"] = 'application/x-bibtex'
     response.headers["Content-Disposition"] = ' attachment; filename=sigproc.bib'
