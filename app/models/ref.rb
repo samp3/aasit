@@ -9,9 +9,6 @@ class Ref < ActiveRecord::Base
     requiredIds = reftype.requiredFields.ids - self.ref_metum.pluck(:ref_attribute_id)
     requiredIds.length.zero?
   end
-  def fields
-    Hash[ref_metum.joins(:ref_attribute).pluck(:name, :value)]
-  end
   def to_s
     output = "@#{self.reftype.name}{#{slug},\n"
     self.ref_metum.each do | meta|
