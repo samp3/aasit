@@ -5,6 +5,14 @@ Feature: Käyttäjänä voin lisätä järjestelmään BibTeX-viitteitä ihmisel
     When Käyttäjä luo viitteen, jonka lyhytnimi on "TT01" ja tyyppi on "article"
     Then Järjestelmä palauttaa HTTP statuskoodin "201"
 
+  Scenario: Käyttäjä yrittää luoda kaksi viitetta samalla lyhytnimellä
+    Given Järjestelmässä on viitetyyppi "article", jonka id on "1"
+    When Käyttäjä luo viitteen, jonka lyhytnimi on "TT01" ja tyyppi on "article"
+    Then Järjestelmä palauttaa HTTP statuskoodin "201"
+    When Käyttäjä luo viitteen, jonka lyhytnimi on "TT01" ja tyyppi on "article"
+    Then Järjestelmä palauttaa HTTP statuskoodin "422"
+
+
   Scenario: Viitteeseen voi lisätä attribuutteja
     Given Järjestelmässä ei ole mitään
     Given Järjestelmässä on attribuutti "author", jonka id on "1"
