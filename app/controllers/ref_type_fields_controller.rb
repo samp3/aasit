@@ -4,7 +4,7 @@ class RefTypeFieldsController < ApplicationController
   # GET /ref_type_fields
   # GET /ref_type_fields.json
   def index
-    @ref_type_fields = RefTypeField.all
+    @ref_type_fields = RefTypeField.all.order(reftype_id: :asc, obligatory: :desc)
   end
 
   # GET /ref_type_fields/1
@@ -14,11 +14,16 @@ class RefTypeFieldsController < ApplicationController
 
   # GET /ref_type_fields/new
   def new
+    @ref_attributes = RefAttribute.all
+    @reftypes = Reftype.all
     @ref_type_field = RefTypeField.new
   end
 
   # GET /ref_type_fields/1/edit
   def edit
+    @obs = [{:id => 0, :name => "Valinnainen"}]
+    @ref_attributes = RefAttribute.all
+    @reftypes = Reftype.all
   end
 
   # POST /ref_type_fields
@@ -31,6 +36,8 @@ class RefTypeFieldsController < ApplicationController
         format.html { redirect_to @ref_type_field, notice: 'Ref type field was successfully created.' }
         format.json { render :show, status: :created, location: @ref_type_field }
       else
+        @ref_attributes = RefAttribute.all
+        @reftypes = Reftype.all
         format.html { render :new }
         format.json { render json: @ref_type_field.errors, status: :unprocessable_entity }
       end

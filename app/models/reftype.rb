@@ -10,6 +10,9 @@ class Reftype < ActiveRecord::Base
    def requiredFieldsIds
      requiredFields.ids
    end
+   def hasFields
+     not requiredFields.empty?
+   end
   def optionalFields
      ref_attributes.where("obligatory = 0")
   end

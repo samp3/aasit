@@ -13,15 +13,18 @@
 
   <div class="field">
     <%= f.label :reftype_id %><br>
-    <%= f.number_field :reftype_id %>
+    <%= f.select :reftype_id, options_from_collection_for_select(@reftypes,:id,:name) %>
   </div>
   <div class="field">
     <%= f.label :ref_attribute_id %><br>
-    <%= f.number_field :ref_attribute_id %>
+    <%= f.select :ref_attribute_id, options_from_collection_for_select(@ref_attributes,:id,:name) %>
   </div>
   <div class="field">
     <%= f.label :obligatory %><br>
-    <%= f.number_field :obligatory %>
+    <select id="ref_type_field_obligatory" name="ref_type_field[obligatory]">
+      <option value="0">Valinnainen</option>
+      <option value="1" selected>Pakollinen</option>
+    </select>
   </div>
   <div class="actions">
     <%= f.submit %>
