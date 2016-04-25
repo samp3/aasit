@@ -67,3 +67,10 @@ And(/^Käyttäjä luon viitteen ilman tyyppiä$/) do
   last_response.status.should eql(422) #422 Unprocessable Entity
 end
 
+When(/^Käyttäjä pyytää viitteen "([^"]*)" tietoja järjestelmältä$/) do |slug|
+  showRef(slug)
+  @ref1 = Ref.find_by_slug(slug)
+end
+Then(/^Hän saa vastauksen$/) do
+  last_response.status.should eql(200)
+end

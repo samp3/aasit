@@ -49,3 +49,14 @@ Feature: Käyttäjänä voin lisätä järjestelmään BibTeX-viitteitä ihmisel
     When Käyttäjä luon viitteen ilman lyhyt nimeä
     And Käyttäjä luon viitteen ilman tyyppiä
     Then Järjestelmä palauttaa HTTP statuskoodin "422"
+  Scenario: Näytetään viite
+    Given Järjestelmässä ei ole mitään
+    Given Järjestelmässä on attribuutti "author", jonka id on "1"
+    Given Järjestelmässä on attribuutti "title", jonka id on "2"
+    Given Järjestelmässä on attribuutti "journal", jonka id on "3"
+    Given Järjestelmässä on attribuutti "year", jonka id on "4"
+    Given Järjestelmässä on attribuutti "volume", jonka id on "5"
+    Given Järjestelmässä on viitetyyppi "article", jonka id on "6"
+    Given Järjestelmässä on viite, jonka lyhytnimi on "TT01" ja tyyppi on "article"
+    When Käyttäjä pyytää viitteen "TT01" tietoja järjestelmältä
+    Then Hän saa vastauksen
