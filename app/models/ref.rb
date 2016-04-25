@@ -3,7 +3,8 @@ class Ref < ActiveRecord::Base
   has_many :ref_metum, dependent: :destroy
 
   validates :reftype_id, presence: true
-  validates :slug , presence: true
+  validate :validate_reftype_id
+  validates :slug, presence: true, uniqueness: true
 
   def requiredFields?
     requiredIds = reftype.requiredFields.ids - self.ref_metum.pluck(:ref_attribute_id)
@@ -21,5 +22,9 @@ class Ref < ActiveRecord::Base
     end
     output += "}\n"
     return output
+  end
+  private
+  def validate_reftype_id
+    errors.add(:reftype_id, "is invalid") unless Reftype.exists?(self.reftype_id)
   end
 end
