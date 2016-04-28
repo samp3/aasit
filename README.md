@@ -4,6 +4,7 @@
 [![Code Climate](https://codeclimate.com/github/samp3/aasit/badges/gpa.svg)](https://codeclimate.com/github/samp3/aasit)
 
 [Product Backlog](https://docs.google.com/spreadsheets/d/1_LbF91-R9yexl-rieCrdwtKzKxY0o2hEt3J-u5UiIBM/pubhtml?gid=0&single=true)
+[Definition of Done](https://docs.google.com/spreadsheets/d/1_LbF91-R9yexl-rieCrdwtKzKxY0o2hEt3J-u5UiIBM/pubhtml?gid=1282699843&single=true)
 ##Sprint 1 
 [Burndown-käyrä](https://docs.google.com/spreadsheets/d/1_LbF91-R9yexl-rieCrdwtKzKxY0o2hEt3J-u5UiIBM/pubchart?oid=764712834&amp;format=interactive)
 [Sprint 1 backlog](https://docs.google.com/spreadsheets/d/1_LbF91-R9yexl-rieCrdwtKzKxY0o2hEt3J-u5UiIBM/pubhtml?gid=275713509&single=true)

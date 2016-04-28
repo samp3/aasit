@@ -64,7 +64,7 @@ Then(/^Ref osaa antaa viitteen tiedot merkkijonona$/) do
       expect(r_type).to eq(type)
       expect(r_slug).to eq(@ref.slug)
     elsif i > (@ref.ref_metum.length + 1)
-      puts i.to_s + " <> " + @ref.ref_metum.length.to_s + " " + line
+      expect(line.chomp!).to eq('}')
     else
       attribute, value  = /([^"]*) = { ([^"]*) }/.match(line).captures
       expect(value).to eq(@bib[attribute])

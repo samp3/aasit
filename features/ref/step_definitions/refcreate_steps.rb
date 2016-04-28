@@ -71,6 +71,10 @@ When(/^Käyttäjä pyytää viitteen "([^"]*)" tietoja järjestelmältä$/) do |
   showRef(slug)
   @ref1 = Ref.find_by_slug(slug)
 end
-Then(/^Hän saa vastauksen$/) do
+Then(/^Hän saa vastauksena luodun viitteen$/) do
   last_response.status.should eql(200)
+  response_ref = JSON.parse(last_response.body)
+  expect(response_ref['id']).to eq(@ref1.id)
+  expect(response_ref['slug']).to eq(@ref1.slug)
+  expect(response_ref['reftype_id']).to eq(@ref1.reftype_id)
 end

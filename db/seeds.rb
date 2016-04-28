@@ -9,10 +9,10 @@ types = ['article','book','booklet','conference','inbook','incollection','inproc
 reftypefields = Hash.new
 reftypefields['article'] = {required:['author','title','journal','year','volume'],
                             optional:['number','pages','month','note','key']}
-reftypefields['book'] = {required:['author','editor','title','publisher','year'],
-                            optional:['volume','number','series','address','month','year','note','key']}
+reftypefields['book'] = {   required:['author','editor','title','publisher','year'],
+                            optional:['volume','number','series','address','month','note','key']}
 reftypefields['inproceedings'] = {required:['author','title','booktitle','year'],
-                            optional:['editor','volume','number','series','pages','address','month','organization','publisher','note','key']}
+                                  optional:['editor','volume','number','series','pages','address','month','organization','publisher','note','key']}
 
 
 #Luodaan attribuutit

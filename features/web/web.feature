@@ -18,13 +18,15 @@ Feature: Käyttäjänä pystyn käyttämään järjestelmää selaimella
 
   Scenario: Käyttäjä luo nimettömän viitteen järjestelmään
     Given Lue seeds.rb
+    Given Järjestelmässä ei ole viitteitä
     Given Järjestelmässä on artikkeli lyhytnimellä "POISTA00"
     When Käyttäjä siirtyy sivulle refs
-    And Painaa nappia "destroy"
+    And Painaa nappia "Poista"
     Then Kyseinen viite poistuu järjestelmästä
 
     Scenario: Käyttäjä pystyy lisämään attribuutin viitteelle
       Given Lue seeds.rb
+      Given Järjestelmässä ei ole viitteitä
       Given Järjestelmässä on artikkeli lyhytnimellä "ÖLÖL12"
       Given Käyttäjä on sivulla ref_meta
       When Käyttäjä painaa linkkiä "New Ref metum"

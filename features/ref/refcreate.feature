@@ -59,4 +59,4 @@ Feature: Käyttäjänä voin lisätä järjestelmään BibTeX-viitteitä ihmisel
     Given Järjestelmässä on viitetyyppi "article", jonka id on "6"
     Given Järjestelmässä on viite, jonka lyhytnimi on "TT01" ja tyyppi on "article"
     When Käyttäjä pyytää viitteen "TT01" tietoja järjestelmältä
-    Then Hän saa vastauksen
+    Then Hän saa vastauksena luodun viitteen

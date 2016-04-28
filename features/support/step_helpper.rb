@@ -13,6 +13,29 @@ def createRef(slug,type)
          { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
 
 end
+def editRef(ref_id,slug,type)
+  r = Ref.find(ref_id)
+  params = { slug: slug, reftype_id:Reftype.find_by_name(type).id }
+  post "/refs/"+r.id, params.to_json,
+       { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+end
+def showRef(slug)
+
+  get "/refs/"+slug+".json", {},
+       { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+end
+def editRefMeta(ref_meta_id, slug ,ref_attribute_name,value)
+  r = RefMetum.find(ref_meta_id)
+  params = { ref_id: Ref.find_by_slug(slug).id, ref_attribute_id: RefAttribute.find_by_name(ref_attribute_name).id ,value: value  }
+  post "/ref_meta/"+r.id+".json", params.to_json,
+       { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+end
+def editReftype(name)
+  r = Reftype.find_by_name(name)
+  params = { name: slug}
+  post "/reftypes/"+r.id, params.to_json,
+       { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
+end
 def create_ref_with_expect(slug, type, amount=1)
   expect {
     createRef(slug,type)
