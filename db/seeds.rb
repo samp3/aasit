@@ -9,6 +9,7 @@ types = ['article','book','booklet','conference','inbook','incollection','inproc
 reftypefields = Hash.new
 reftypefields['article'] = {required:['author','title','journal','year','volume'],
                             optional:['number','pages','month','note','key']}
+
 reftypefields['book'] = {   required:['author','editor','title','publisher','year'],
                             optional:['volume','number','series','address','month','note','key']}
 reftypefields['booklet'] = {   required:['title'],
@@ -34,11 +35,6 @@ reftypefields['techreport'] = {required:['author','title','institution','year'],
 									optional:['type','number','address','month','note','key']}
 reftypefields['unpublished'] = {required:['author','title'],
 									optional:['month','year','key']}
-unpublished
-A document having an author and title, but not formally published.
-Required fields: author, title, note
-Optional fields: month, year, key
-								  
 
 #Luodaan attribuutit
 fields.each do |field|
