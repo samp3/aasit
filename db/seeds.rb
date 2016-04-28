@@ -1,4 +1,4 @@
-#Määritellään tallennettavat attribuutit (viitteen kentät)
+﻿#Määritellään tallennettavat attribuutit (viitteen kentät)
 fields = ['address','annote','author','booktitle','chapter','crossref','edition','editor','howpublished','institution',
           'journal','key','month','note','number','organization','pages','publisher','school','series','title','type',
           'volume','year']
@@ -11,9 +11,34 @@ reftypefields['article'] = {required:['author','title','journal','year','volume'
                             optional:['number','pages','month','note','key']}
 reftypefields['book'] = {   required:['author','editor','title','publisher','year'],
                             optional:['volume','number','series','address','month','note','key']}
+reftypefields['booklet'] = {   required:['title'],
+                            optional:['author','howpublished','address','month','year','note','key']}
+reftypefields['conference'] = {required:['author','title','booktitle','year'],
+                                  optional:['editor','volume','number','series','pages','address','month','organization','publisher','note','key']}
 reftypefields['inproceedings'] = {required:['author','title','booktitle','year'],
                                   optional:['editor','volume','number','series','pages','address','month','organization','publisher','note','key']}
-
+reftypefields['inbook'] = {   required:['author','editor','title','publisher','year','chapter','pages'],
+                            optional:['volume','number','series','type','address','month','note','key']}
+reftypefields['incollection'] = {   required:['author','title','booktitle','publisher','year'],
+                            optional:['editor','volume','number','series','type','chapter','pages','address','edition','month','note','key']}
+reftypefields['manual'] = {required:['title'],
+                                  optional:['author','organization','address','edition','month','year','note','key']}
+reftypefields['mastersthesis'] = {required:['author', 'title', 'school', 'year'],
+									optional:['type', 'address', 'month', 'note', 'key']}
+reftypefields['misc'] = {optional:['author', 'title', 'howpublished', 'month', 'year', 'note', 'key']}
+reftypefields['phdthesis'] = {required:['author', 'title', 'school', 'year'],
+									optional:['type', 'address', 'month', 'note', 'key']}
+reftypefields['proceedings'] = {required:['title','year'],
+									optional:['editor','volume','number','series','address','month','publisher','organization','note','key']}
+reftypefields['techreport'] = {required:['author','title','institution','year'],
+									optional:['type','number','address','month','note','key']}
+reftypefields['unpublished'] = {required:['author','title'],
+									optional:['month','year','key']}
+unpublished
+A document having an author and title, but not formally published.
+Required fields: author, title, note
+Optional fields: month, year, key
+								  
 
 #Luodaan attribuutit
 fields.each do |field|
