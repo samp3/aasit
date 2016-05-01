@@ -12,21 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :reftype_id %><br>
+    <%= f.label :reftype_id, 'Tyyppi' %><br>
     <%= f.select :reftype_id, options_from_collection_for_select(@reftypes,:id,:name) %>
   </div>
   <div class="field">
-    <%= f.label :ref_attribute_id %><br>
+    <%= f.label :ref_attribute_id, 'Kenttä' %><br>
     <%= f.select :ref_attribute_id, options_from_collection_for_select(@ref_attributes,:id,:name) %>
   </div>
   <div class="field">
-    <%= f.label :obligatory %><br>
+    <%= f.label :obligatory, 'Pakollisuus' %><br>
     <select id="ref_type_field_obligatory" name="ref_type_field[obligatory]">
       <option value="0">Valinnainen</option>
       <option value="1" selected>Pakollinen</option>
+      <option value="2" >Pakollinen (ja/tai)</option>
     </select>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Tallenna' %>
   </div>
 <% end %>

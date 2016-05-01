@@ -1,7 +1,7 @@
 class Ref < ActiveRecord::Base
   belongs_to :reftype
   has_many :ref_metum, dependent: :destroy
-
+  has_many :ref_attributes, through: :ref_metum
   validates :reftype_id, presence: true
   validate :validate_reftype_id
   validates :slug, presence: true, uniqueness: true

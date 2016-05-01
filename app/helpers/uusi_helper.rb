@@ -1,0 +1,2 @@
+module UusiHelper
+end

@@ -1,0 +1,41 @@
+<h1>Luo uusi <%= @type[0].name%></h1>
+
+<%= form_tag('/uusi',method: 'post') do %>
+    <p id="notice"><%= notice %></p>
+    <% if @Ref.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@Ref.errors.count, "error") %> prohibited this ref from being saved:</h2>
+
+          <ul>
+            <% @Ref.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= label_tag :slug, 'Lyhytnimi' %><br>
+    <%= text_field_tag 'ref[slug]' %> <br />
+    <%= label_tag :reftype_id, 'Tyyppi' %><br>
+    <%= select_tag 'ref[reftype_id]', options_from_collection_for_select(@type,:id,:name)%>
+    <h2>Rivit</h2>
+    <table>
+      <tr>
+        <th>Kenttä</th>
+        <th>Arvo</th>
+        <td></td>
+      </tr>
+
+    <% @Ref.ref_metum.each_with_index  do |meta,i| %>
+          <tr>
+        <td><%= select_tag 'ref[ref_metum][][ref_attribute_id]', options_from_collection_for_select(RefAttribute.where(id:meta.ref_attribute_id),:id,:name)%></td>
+        <td><%= text_field_tag 'ref[ref_metum][][value]', meta.value, id:meta.ref_attribute.name%></td>
+        <td><%= 'Pakollinen' if @requiredIds.include? meta.ref_attribute_id %><%= 'Pakollinen (Ja/Tai) Kenttäryhmä 1' if @cat2.include? meta.ref_attribute_id %>
+          <%= 'Pakollinen (Ja/Tai) Kenttäryhmä 2' if @cat3.include? meta.ref_attribute_id %>
+          <%= 'Vapaavalintainen' if @optional.include? meta.ref_attribute_id %></td>
+         </tr>
+    <% end %>
+    </table>
+    <%= submit_tag 'Tallenna' %>
+<% end %>
+
+

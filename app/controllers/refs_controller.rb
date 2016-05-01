@@ -5,6 +5,7 @@ class RefsController < ApplicationController
   # GET /refs.json
   def index
     @refs = Ref.all
+    @types = Reftype.all
   end
 
   # GET /refs/1
@@ -13,7 +14,10 @@ class RefsController < ApplicationController
     @ref = Ref.find_by_slug(params[:id])
     respond_to do |format|
       if @ref
-        @meta = @ref.ref_metum
+
+        @required = @ref.reftype.requiredFields
+        @optional = @ref.reftype.optionalFields
+        @category2 = @ref.reftype.required2Fields
         format.html { render :show }
         format.json { render :show, location: @ref, status: :ok }
       else
@@ -26,7 +30,14 @@ class RefsController < ApplicationController
   # GET /refs/new
   def new
     @ref = Ref.new
-    @ref.reftype_id = Reftype.first.id
+    reftype = Reftype.first
+    if reftype
+      @ref.reftype_id = reftype.id
+    else
+      respond_to do |format|
+        format.html { redirect_to reftypes_path, notice: 'Viitteen luonti epäonnistui koska järjestelmässä ei ole viitetyyppejä. Ole hyvä ja luo viitetyyppi.' }
+      end
+    end
     @types = Reftype.all.select {|type| type.hasFields}
   end
 
@@ -57,7 +68,7 @@ class RefsController < ApplicationController
   def update
     respond_to do |format|
       if @ref.update(ref_params)
-        format.html { redirect_to @ref, notice: 'Ref was successfully updated.' }
+        format.html { redirect_to refs_path, notice: 'Viite päivitetty onnistuneesti.' }
         format.json { render :show, status: :ok, location: @ref }
       else
         format.html { render :edit }

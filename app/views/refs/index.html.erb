@@ -1,7 +1,11 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Järjestelmässä olevat viitteet</h1>
+<p>Lisää:
+<% @types.each do |type| %>
+<%=link_to type.name ,'/uusi/'+type.name%>
+<% end %>
+</p>
 <h2><%= link_to 'Lataa BibTeX-tiedosto', '/bibtexify' %></h2>
+<h1>Viitteet</h1>
 <table>
   <thead>
     <tr>
@@ -24,5 +28,3 @@
 </table>
 
 <br>
-
-<%= link_to 'Luo viite', new_ref_path %>

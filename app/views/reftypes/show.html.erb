@@ -1,9 +1,45 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @reftype.name %>
+  <h1>  <%= @reftype.name %></h1>
+  <%= link_to 'Lisää kenttä', '/reftypes/'+@reftype.id.to_s+'/new_field'%>
+  <h2>Pakolliset kentät</h2>
+  <table>
+    <tr>
+      <th>Kenttä</th>
+      <th></th>
+    </tr>
+    <% @required.each do |a| %>
+    <tr>
+      <td><%= a.name %></td>
+      <td><%= link_to 'Muokkaa', edit_ref_attribute_path(a) %> </td>
+      <td><%= link_to 'Poista', a, method: :delete, data: { confirm: 'Oletko varma?' } %></td>
+    </tr>
+
+    <% end %>
+  </table>
+  <h2>Pakolliset kentätä (ja/tai)</h2>
+<table>
+<% @cat2.each do |a| %>
+    <tr>
+      <td><%= a.name %></td>
+      <td><%= link_to 'Muokkaa', edit_ref_attribute_path(a) %> </td>
+      <td><%= link_to 'Poista', a, method: :delete, data: { confirm: 'Oletko varma?' } %></td>
+    </tr>
+<% end %>
+</table>
+  <h2>Vapaavalintaiset kentät</h2>
+<table>
+<% @required.each do |a| %>
+    <tr>
+      <td><%= a.name %></td>
+      <td><%= link_to 'Muokkaa', edit_ref_attribute_path(a) %> </td>
+      <td><%= link_to 'Poista', a, method: :delete, data: { confirm: 'Oletko varma?' } %></td>
+    </tr>
+
+<% end %>
+</table>
 </p>
 
-<%= link_to 'Edit', edit_reftype_path(@reftype) %> |
-<%= link_to 'Back', reftypes_path %>
+<%= link_to 'Muokkaa tyyppiä', edit_reftype_path(@reftype) %> |
+<%= link_to 'Takaisin', reftypes_path %>

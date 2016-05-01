@@ -1,11 +1,12 @@
 class RefMetaController < ApplicationController
   before_action :set_ref_metum, only: [:show, :edit, :update, :destroy]
-  skip_before_action :verify_authenticity_token
+
 
   # GET /ref_meta
   # GET /ref_meta.json
   def index
     @ref_meta = RefMetum.all
+    @types = Reftype.all
   end
 
   # GET /ref_meta/1
@@ -16,15 +17,24 @@ class RefMetaController < ApplicationController
 
   # GET /ref_meta/new
   def new
+    @ref_type = Reftype.find_by_name(params[:reftype_name])
     @ref_metum = RefMetum.new
-    @refs = Ref.all
-    @attrs = RefAttribute.all
+    @attrs = nil
+    @refs = Ref.where(slug:(params[:slug]))
+      if @ref_type and @refs[0]
+        @attrs =RefAttribute.where(id: @refs[0].reftype.optionalFieldsIds - @refs[0].ref_metum.pluck(:ref_attribute_id))
+      else
+        respond_to do |format|
+          format.html { redirect_to refs_path, notice: 'Viitetyyppin tai viitteen tunnus oli väärä.' }
+        end
+      end
   end
 
   # GET /ref_meta/1/edit
   def edit
     @refs = Ref.where("id = :id", {id: @ref_metum.ref_id})
-    @attrs = RefAttribute.all
+    @attrs = Reftype.find(@refs[0].reftype_id).ref_attributes - @refs[0].ref_attributes
+
   end
 
   # POST /ref_meta
@@ -35,7 +45,7 @@ class RefMetaController < ApplicationController
 
     respond_to do |format|
       if @ref_metum.save
-        format.html { redirect_to @ref_metum.ref, notice: 'Ref metum was successfully created.' }
+        format.html { redirect_to '/refs/'+@ref_metum.ref.slug, notice: 'Viitteeseen lisätty tieto onnistuneesti.' }
         format.json { render :show, status: :created, location: @ref_metum }
       else
         @refs = Ref.all
@@ -51,7 +61,7 @@ class RefMetaController < ApplicationController
   def update
     respond_to do |format|
       if @ref_metum.update(ref_metum_params)
-        format.html { redirect_to @ref_metum, notice: 'Ref metum was successfully updated.' }
+        format.html { redirect_to '/refs/'+@ref_metum.ref.slug, notice: 'Tiedot päivitettiin onnistuneesti' }
         format.json { render :show, status: :ok, location: @ref_metum }
       else
         format.html { render :edit }
@@ -63,9 +73,11 @@ class RefMetaController < ApplicationController
   # DELETE /ref_meta/1
   # DELETE /ref_meta/1.json
   def destroy
+    ref = @ref_metum.ref
+
     @ref_metum.destroy
     respond_to do |format|
-      format.html { redirect_to ref_meta_url, notice: 'Ref metum was successfully destroyed.' }
+      format.html { redirect_to '/refs/'+ref.slug, notice: 'Tieto poistettu onnistuneesti' }
       format.json { head :no_content }
     end
   end

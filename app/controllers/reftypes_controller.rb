@@ -10,6 +10,9 @@ class ReftypesController < ApplicationController
   # GET /reftypes/1
   # GET /reftypes/1.json
   def show
+    @required = @reftype.requiredFields
+    @optional = @reftype.optionalFields
+    @cat2 = @reftype.required2Fields
   end
 
   # GET /reftypes/new

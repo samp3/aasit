@@ -14,7 +14,6 @@ class RefMetum < ActiveRecord::Base
 
 
   private
-
   def validate_ref_attribute_id
     errors.add(:ref_attribute_id, "is invalid") unless RefAttribute.exists?(self.ref_attribute_id)
   end

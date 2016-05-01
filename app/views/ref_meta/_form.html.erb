@@ -12,18 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :ref_id %><br>
+    <%= f.label :ref_id, 'Viite' %><br>
     <%= f.select :ref_id, options_from_collection_for_select(@refs,:id,:slug) %>
   </div>
   <div class="field">
-    <%= f.label :ref_attribute_id %><br>
+    <%= f.label :ref_attribute_id,'Kenttä' %><br>
     <%= f.select :ref_attribute_id, options_from_collection_for_select(@attrs,:id,:name) %>
   </div>
   <div class="field">
-    <%= f.label :value %><br>
+    <%= f.label :value, 'Arvo' %><br>
     <%= f.text_field :value %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Lähetä' %>
   </div>
 <% end %>

@@ -3,15 +3,19 @@ Rails.application.routes.draw do
   resources :ref_type_fields
   resources :ref_meta
   resources :ref_attributes
-  resources :refs
+  resources :refs, :only => [:index,:show,:edit,:update,:destroy]
   resources :reftypes
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'refs#index'
-  get 'bibtexify/' => 'bibtexifies#download'
 
+  get 'bibtexify/' => 'bibtexifies#download'
+  get  'ref_meta/:reftype_name/:slug/new' => 'ref_meta#new'
+  get 'reftypes/:reftype_id/new_field' => 'ref_type_fields#type_new'
+  get 'uusi/:type' => 'uusi#new'
+  post 'uusi' => 'uusi#create'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

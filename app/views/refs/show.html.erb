@@ -9,13 +9,83 @@
   <strong>Tyyppi:</strong>
   <%= @ref.reftype.name %>
 </p>
+<hr>
 <h2>Sisältö</h2>
-<% @meta.each do |field| %>
-    <p><strong> <%= field.ref_attribute.name  %> </strong>: <%= field.value %> <%= link_to 'Edit', edit_ref_metum_path(field) %> |</p>
+<h3>Pakolliset kentät</h3>
+<table>
+  <tr>
+    <th>Kenttä</th>
+    <th>Arvo</th>
+    <th></th>
+  </tr>
+
+<% @required.each do |field| %>
+      <% data = field.ref_metum.where(ref_id:@ref.id)[0] %>
+      <tr>
+        <td><%=field.name%></td>
+        <td><%= data.value if data %></td>
+        <td><% unless data %>
+              <%= link_to('Lisää tieto', '/ref_meta/'+@ref.reftype.name+'/'+@ref.slug+'/new') %>
+          <% else  %>
+              <%= link_to 'Muokkaa '+data.ref_attribute.name, edit_ref_metum_path(data) %>
+          <% end %></td>
+      </tr>
+
     <% end %>
+  </table>
+<% if @category2.length > 0 %>
+<h3>jompikumpi-pakolliset</h3>
+    <table>
+      <tr>
+        <th>Kenttä</th>
+        <th>Arvo</th>
+      </tr>
+
+      <% @category2.each do |field| %>
+    <% data = field.ref_metum.where(ref_id:@ref.id)[0] %>
+    <tr>
+      <td><%=field.name%></td>
+      <td><%= data.value if data %></td>
+      <td><% unless data %>
+            <%= link_to('Lisää tieto', '/ref_meta/'+@ref.reftype.name+'/'+@ref.slug+'/new') %>
+        <% else  %>
+            <%= link_to 'Muokkaa', edit_ref_metum_path(data) %>
+        <% end %></td>
+    </tr>
+
+<% end %>
+
+    </table>
+<% end %>
+<h3>Vapaavalintaiset kentät</h3>
+<table>
+  <tr>
+    <th>Kenttä</th>
+    <th>Arvo</th>
+    <th></th>
+  </tr>
+
+  <% @optional.each do |field| %>
+      <% data = field.ref_metum.where(ref_id:@ref.id)[0] %>
+      <tr>
+        <td><%=field.name%></td>
+
+        <td><%= data.value if data %></td>
+        <td><% unless data %>
+              <%= link_to('Lisää tieto', '/ref_meta/'+@ref.reftype.name+'/'+@ref.slug+'/new') %>
+              <% else  %>
+            <%= link_to 'Muokkaa '+data.ref_attribute.name, edit_ref_metum_path(data) %> <%= link_to 'Poista '+data.ref_attribute.name, data, method: :delete, data: { confirm: 'Oletko varma?' } %></td>
+              <% end %>
+          </td>
+
+      </tr>
+
+
+  <% end %>
+</table>
 <p>
 <hr>
-  <%= link_to 'Edit', edit_ref_path(@ref) %> |
+  <%= link_to 'Muokkaa viitteen tietoja', edit_ref_path(@ref) %> |
   <%= link_to 'Back', refs_path %>
 
 </p>

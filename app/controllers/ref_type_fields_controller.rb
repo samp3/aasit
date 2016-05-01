@@ -18,6 +18,27 @@ class RefTypeFieldsController < ApplicationController
     @reftypes = Reftype.all
     @ref_type_field = RefTypeField.new
   end
+  # GET /reftypes/new
+  def type_new
+
+    @reftypes = Reftype.where(id: params[:reftype_id])
+
+    respond_to do |format|
+      if @reftypes[0]
+        @ref_type_field = RefTypeField.new
+        @ref_attributes = RefAttribute.all - @reftypes[0].requiredFields
+        @ref_attributes -=  @reftypes[0].optionalFields
+        @ref_attributes -=  @reftypes[0].required2Fields
+        format.html { render 'type_new', notice: 'Ref type field was successfully created.' }
+        format.json { render :show, status: :created, location: @ref_type_field }
+      else
+        @ref_attributes = RefAttribute.all
+        @reftypes = Reftype.all
+        format.html { redirect_to reftype_path, notice: 'Tuntematon tyyppi'}
+        format.json { render json: @ref_type_field.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # GET /ref_type_fields/1/edit
   def edit
