@@ -7,41 +7,46 @@ Given(/^Lue seeds\.rb$/) do
 
   load File.dirname(__FILE__) + '/../../../db/seeds.rb'
 end
-Given(/^Järjestelmässä on viite, jonka lyhytnimi on "([^"]*)" ja tyyppi "([^"]*)"$/)  do |slug,type|
-  Reftype.create!(name: type, id:1)
-  tyyppi = Reftype.find_by_name(type)
-  Ref.create!(slug: slug, reftype_id: tyyppi.id)
-  @artikkeli = Ref.find_by_slug(slug)
+When(/^Käyttäjä siirtyy sivulle "([^"]*)"$/) do |url|
+  visit url
 end
-When(/^Käyttäjä siirtyy sivulle refs$/) do
-  visit refs_path
+Then(/^Käyttäjä ohjataan muokkaussivulle$/) do
+  current_url.should have_content("/edit")
 end
-Then(/^hän näkee listan järjestelmässä olevista viitteistä$/) do
-  page.should have_content(@artikkeli.slug)
+Then(/^Käyttäjä ohjataan sivulle "([^"]*)"$/) do |url|
+  current_url.should have_content(url)
 end
+When(/^Käyttäjä valitsee kentäksi "([^"]*)"$/) do |attribute|
+  select(attribute, :from => 'Kenttä')
 
-When(/^Käyttäjä siirtyy viitteen luontisivulle$/) do
-  visit 'refs/new'
 end
-When(/^Luo artikkelin lyhytnimellä "([^"]*)"$/)  do |slug|
+When(/^Antaa lyhytnimeksi "([^"]*)"$/)  do |slug|
   fill_in 'ref[slug]', :with => slug
-  click_button('Anna viitteelle tunniste ja tyyppi')
+end
+When(/^Täyttää kentät seuraavasti$/) do |table|
+  table.hashes.each do |rivi |
+    fill_in rivi['kentta'], with: rivi['arvo']
+  end
+
 end
 Given(/^Järjestelmässä on artikkeli lyhytnimellä "([^"]*)"$/) do |slug|
   article = Reftype.find_by_name('article')
   unless article
-    Reftype.create!(name: "article", id:Reftype.find_by_name('article').id)
+    Reftype.create!(name: "article")
   else
   end
 
-  Ref.create!(slug: slug, reftype_id: 1)
+  Ref.create!(slug: slug, reftype_id: Reftype.find_by_name('article').id)
   @artikkeli = Ref.find_by_slug(slug)
+end
+When(/^Käyttäjä syöttää lyhytnimeksi "([^"]*)"$/) do |slug|
+  fill_in 'ref[slug]', :with => slug
 end
 Given(/^Järjestelmässä ei ole viitteitä$/) do
   Ref.delete_all
 end
 And(/^Painaa nappia "([^"]*)"$/) do |nappi|
-  click_link(nappi)
+  click_button(nappi)
 end
 Then(/^Kyseinen viite poistuu järjestelmästä$/) do
   expect(page).not_to have_content("Slug can't be blank")
@@ -50,15 +55,9 @@ Given(/^Käyttäjä on sivulla ref_meta$/) do
   visit ref_meta_path
 end
 When(/^Käyttäjä painaa linkkiä "([^"]*)"$/) do |link|
-  click_link(link)
+  page.all(:link,link)[0].click
 end
-And(/^Käyttäjä syöttää kenttään Value "([^"]*)" ja painaa nappia "([^"]*)"$/) do |value,button|
-  fill_in 'Value', :with => value
-  click_button(button)
+
+Then(/^Käyttäjä saa ilmoituksen "([^"]*)"$/) do |ilmoitus|
+  page.should have_content(ilmoitus)
 end
-Then(/^Käyttäjälle ilmoitetaan onnistumisesta ja ohjataan viitteen sivulle$/) do
-  page.should have_content("Tuntamaton lyhytnimi")
-end
-#Update Ref
-#Ref was successfully updated.
-#

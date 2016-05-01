@@ -24,7 +24,18 @@ Then(/^vapaavalintaset kentät:$/) do |fields|
   optional = @reftype.optionalFields
   loopFields(list,optional)
 end
+Then(/^semipakolliset kentät "([^"]*)":$/) do |cat, fields|
+  list = fields.split(/,\s/)
+  optional = nil
+  if cat == 'cat2'
+    optional = @reftype.required2Fields
+  elsif cat == 'cat3'
+    optional = @reftype.required3Fields
+  end
 
+
+  loopFields(list,optional)
+end
 def loopFields(list1, req_opt)
   list1.each do |field|
     ref_attribute = req_opt.find_by_name(field)

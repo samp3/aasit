@@ -4,33 +4,29 @@ Given(/^Järjestelmässä on viite, jonka lyhytnimi on "([^"]*)", tyyppi "([^"]*
 
 
   tiedotOk = ok == "on"
-  @reftype = Reftype.find_by_name(type)
-  @ref = Ref.find_by_slug(slug)
+
   @required = ['author','title','journal','year','volume']
   @optional = ['number','pages','month','note','key']
-  #Tyyppi
-  unless @reftype
-    createReftype(type)
-    @reftype = Reftype.find_by_name(type)
-  end
+
+  @reftype = Reftype.create(name:type)
+
   #Tyypin kentät ja pakolliset kentät
-    @required.each do |field|
-      processRefTypeField(field,type,1)
+   @required.each do |field|
+      attribute = RefAttribute.create(name:field)
+      RefTypeField.create(ref_attribute_id:attribute.id, reftype_id:@reftype.id, obligatory:1)
     end
   #Vapaavalintaiset kentät
-    @optional.each do |field|
-      processRefTypeField(field,type,0)
+   @optional.each do |field|
+      attribute = RefAttribute.create(name:field)
+      RefTypeField.create(ref_attribute_id:attribute.id, reftype_id:@reftype.id, obligatory:0)
     end
   #Viite
-  unless @ref
-    create_ref_with_expect(slug, type)
-    @ref = Ref.find_by_slug(slug)
-  end
+  @ref = Ref.create(slug: slug, reftype_id:@reftype.id)
+
   #Rivejä
   @required.each do |ref_attribute|
     randValue = (0...50).map { ('a'..'z').to_a[rand(26)] }.join
-
-    createRefMetumWithExpect(@ref.slug, ref_attribute, randValue)
+    RefMetum.create(ref_id:@ref.id,ref_attribute_id:RefAttribute.find_by_name(ref_attribute).id,value:randValue)
   end
   unless tiedotOk
     @ref.ref_metum.last.delete

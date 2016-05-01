@@ -1,4 +1,3 @@
-
 Feature: Järjestelmä tukee BibTeXin mukaisia viitetyyppejä ja kenttiä
 
   Scenario: Järjestelmä tukee kaikkia viitetyyppejä
@@ -24,17 +23,22 @@ Feature: Järjestelmä tukee BibTeXin mukaisia viitetyyppejä ja kenttiä
           """
           number, pages, month, note, key
           """
-    @wip
+
   Scenario: Kirjalla on pakolliset ja valinnaiset kentät
     When Lue seeds.rb
     Then viitetyypillä "book" on pakolliset kentät:
           """
-          author, title, publisher, year
+          title, publisher, year
+          """
+     And semipakolliset kentät "cat2":
+          """
+         author, editor
           """
     And vapaavalintaset kentät:
           """
-          volume,number, series, address, edition, month, note, key
+          volume, number, series, address, edition, month, note, key
           """
+
   Scenario: Kirjasella on pakolliset ja valinnaiset kentät
     When Lue seeds.rb
     Then viitetyypillä "booklet" on pakolliset kentät:
@@ -65,12 +69,19 @@ Feature: Järjestelmä tukee BibTeXin mukaisia viitetyyppejä ja kenttiä
           """
           editor, volume, number, series, pages, address, month, organization, publisher, note, key
           """
-    @wip
   Scenario: Inbookilla on pakolliset ja valinnaiset kentät
     When Lue seeds.rb
     Then viitetyypillä "inbook" on pakolliset kentät:
           """
-          author, editor, title, chapter, pages, publisher, year
+          title, publisher, year
+          """
+      And semipakolliset kentät "cat2":
+          """
+         author, editor
+          """
+      And semipakolliset kentät "cat3":
+          """
+         chapter, pages
           """
     And vapaavalintaset kentät:
           """
@@ -126,7 +137,6 @@ Feature: Järjestelmä tukee BibTeXin mukaisia viitetyyppejä ja kenttiä
           """
           type, address, month, note, key
           """
-@wip
   Scenario: proceedings:illa on pakolliset ja valinnaiset kentät
     When Lue seeds.rb
     Then viitetyypillä "proceedings" on pakolliset kentät:
@@ -135,7 +145,7 @@ Feature: Järjestelmä tukee BibTeXin mukaisia viitetyyppejä ja kenttiä
           """
     And vapaavalintaset kentät:
           """
-          editor, volume,number, series, address, month, publisher, organization, note, key
+          editor, volume, number, series, address, month, publisher, organization, note, key
           """
   Scenario: techreport:illa on pakolliset ja valinnaiset kentät
     When Lue seeds.rb
@@ -147,7 +157,6 @@ Feature: Järjestelmä tukee BibTeXin mukaisia viitetyyppejä ja kenttiä
           """
           type, number, address, month, note, key
           """
-@wip
   Scenario: unpublished:illa on pakolliset ja valinnaiset kentät
     When Lue seeds.rb
     Then viitetyypillä "unpublished" on pakolliset kentät:
