@@ -10,16 +10,19 @@ reftypefields = Hash.new
 reftypefields['article'] = {required:['author','title','journal','year','volume'],
                             optional:['number','pages','month','note','key']}
 
-reftypefields['book'] = {   required:['author','editor','title','publisher','year'],
-                            optional:['volume','number','series','address','month','note','key']}
+reftypefields['book'] = {   required:['title','publisher','year'],
+                            cat2:['author','editor'],
+                            optional:['volume','number','series','address','edition','month','note','key']}
 reftypefields['booklet'] = {   required:['title'],
                             optional:['author','howpublished','address','month','year','note','key']}
 reftypefields['conference'] = {required:['author','title','booktitle','year'],
                                   optional:['editor','volume','number','series','pages','address','month','organization','publisher','note','key']}
 reftypefields['inproceedings'] = {required:['author','title','booktitle','year'],
                                   optional:['editor','volume','number','series','pages','address','month','organization','publisher','note','key']}
-reftypefields['inbook'] = {   required:['author','editor','title','publisher','year','chapter','pages'],
-                            optional:['volume','number','series','type','address','month','note','key']}
+reftypefields['inbook'] = {   required:['title','publisher','year'],
+                              cat2: ['author','editor'],
+                              cat3: ['chapter','pages'],
+                            optional:['volume','number','series','type','address','edition','month','note','key']}
 reftypefields['incollection'] = {   required:['author','title','booktitle','publisher','year'],
                             optional:['editor','volume','number','series','type','chapter','pages','address','edition','month','note','key']}
 reftypefields['manual'] = {required:['title'],
@@ -33,7 +36,7 @@ reftypefields['proceedings'] = {required:['title','year'],
 									optional:['editor','volume','number','series','address','month','publisher','organization','note','key']}
 reftypefields['techreport'] = {required:['author','title','institution','year'],
 									optional:['type','number','address','month','note','key']}
-reftypefields['unpublished'] = {required:['author','title'],
+reftypefields['unpublished'] = {required:['author','title','note'],
 									optional:['month','year','key']}
 
 #Luodaan attribuutit
@@ -120,7 +123,7 @@ RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('year'
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('pages').id, value: '249--259')
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('publisher').id, value: 'Consortium for Computing Sciences in Colleges')
 RefMetum.create!(ref_id:ref.id,ref_attribute_id:RefAttribute.find_by_name('address').id, value: 'USA')
-#Luodaan esimerkkiviite
+
 
 #Tallennetaan tieto pakollisista ja valinnaisista kentistä
 reftypefields.keys.each do |type|
@@ -134,8 +137,14 @@ reftypefields.keys.each do |type|
          RefTypeField.create!(ref_attribute_id: ref_attribute_id, reftype_id: reftype_id, obligatory: 1)
        elsif h == :optional
          RefTypeField.create!(ref_attribute_id: ref_attribute_id, reftype_id: reftype_id, obligatory: 0)
-       end
-     end
-  end
+       elsif h == :cat2
+         RefTypeField.create!(ref_attribute_id: ref_attribute_id, reftype_id: reftype_id, obligatory: 2)
+       elsif h == :cat3
+         RefTypeField.create!(ref_attribute_id: ref_attribute_id, reftype_id: reftype_id, obligatory: 3)
+       else
 
+       end
+    end
+  end
 end
+
