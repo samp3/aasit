@@ -33,7 +33,7 @@ class RefMetaController < ApplicationController
   # GET /ref_meta/1/edit
   def edit
     @refs = Ref.where("id = :id", {id: @ref_metum.ref_id})
-    @attrs = Reftype.find(@refs[0].reftype_id).ref_attributes - @refs[0].ref_attributes
+    @attrs = Reftype.where(id: @ref_metum.ref.reftype_id)
 
   end
 

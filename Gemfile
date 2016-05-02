@@ -61,3 +61,7 @@ group :test do
 end
 gem 'coveralls', require: false
 gem 'travis'
+gem 'bootstrap-sass'
+group :development do
+  gem 'rails_layout'
+end

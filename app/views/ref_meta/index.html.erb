@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Järjstelmässä olevat rivit</h1>
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Viite</th>
       <th>Attribuutti</th>
       <th>Arvo</th>
-      <th colspan="2"></th>
+      <th colspan="1"></th>
     </tr>
   </thead>
   <tbody>
@@ -15,8 +15,7 @@
       <tr>
         <td><%= ref_metum.ref.slug if ref_metum.ref%></td>
         <td><%= ref_metum.ref_attribute.name if ref_metum.ref_attribute %></td>
-        <td><%= link_to ref_metum.value, ref_metum %></td>
-        <td><%= link_to 'Muokkaa', edit_ref_metum_path(ref_metum) %></td>
+        <td><%= link_to ref_metum.value, edit_ref_metum_path(ref_metum)  %></td>
         <td><%= link_to 'Poista', ref_metum, method: :delete, data: { confirm: 'Oletko varma?' } %></td>
       </tr>
     <% end %>
