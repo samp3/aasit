@@ -12,14 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :slug %><br>
-    <%= f.text_field :slug %>
+    <%= f.label :slug, 'Lyhytnimi' %><br>
+    <%= f.text_field :slug,class:'form-control' %>
   </div>
   <div class="field">
-    <%= f.label :reftype_id %><br>
-    <%= f.select :reftype_id, options_from_collection_for_select(@types,:id,:name) %>
+    <%= f.label :reftype_id, 'Tyyppi' %><br>
+    <%= f.select :reftype_id, options_from_collection_for_select(@types,:id,:name), class:'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit "Päivitä tiedot" %>
+    <%= f.submit 'Päivitä tiedot',class:'btn btn-default btn-lg'  %>
   </div>
 <% end %>

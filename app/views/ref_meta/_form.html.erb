@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= f.label :ref_id, 'Viite' %><br>
-    <%= f.select :ref_id, options_from_collection_for_select(@refs,:id,:slug) %>
+    <%= f.select :ref_id, options_from_collection_for_select(@refs,:id,:slug), class:'form-control' %>
   </div>
   <div class="field">
     <%= f.label :ref_attribute_id,'Kenttä' %><br>
-    <%= f.select :ref_attribute_id, options_from_collection_for_select(@attrs,:id,:name) %>
+    <%= f.select :ref_attribute_id, options_from_collection_for_select(@attrs,:id,:name), class:'form-control' %>
   </div>
   <div class="field">
     <%= f.label :value, 'Arvo' %><br>
-    <%= f.text_field :value %>
+    <%= f.text_field :value, class:'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit 'Lähetä' %>
+    <%= f.submit 'Lähetä',class:'btn btn-default btn-lg'  %>
   </div>
 <% end %>

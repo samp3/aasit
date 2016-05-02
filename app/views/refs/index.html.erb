@@ -10,7 +10,7 @@
     <tr>
       <th>Tunnus</th>
       <th>Tyyppi</th>
-      <th colspan="2"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -19,7 +19,6 @@
       <tr>
         <td><%= link_to ref.slug ,'refs/'+ref.slug %></td>
         <td><%= ref.reftype.name unless ref.reftype.nil? %></td>
-        <td><%= link_to 'Muokkaa', edit_ref_path(ref) %></td>
         <td><%= link_to 'Poista', ref, method: :delete, data: { confirm: 'Oletko varma?' } %></td>
       </tr>
     <% end %>

@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :reftype_id, 'Tyyppi' %><br>
-    <%= f.select :reftype_id, options_from_collection_for_select(@reftypes,:id,:name) %>
+    <%= f.select :reftype_id, options_from_collection_for_select(@reftypes,:id,:name), class:'form-control' %>
   </div>
   <div class="field">
     <%= f.label :ref_attribute_id, 'Kenttä' %><br>
-    <%= f.select :ref_attribute_id, options_from_collection_for_select(@ref_attributes,:id,:name) %>
+    <%= f.select :ref_attribute_id, options_from_collection_for_select(@ref_attributes,:id,:name), class:'form-control' %>
   </div>
   <div class="field">
     <%= f.label :obligatory, 'Pakollisuus' %><br>
@@ -29,6 +29,6 @@
     </select>
   </div>
   <div class="actions">
-    <%= f.submit 'Tallenna' %>
+    <%= f.submit 'Tallenna',class:'btn btn-default btn-lg'  %>
   </div>
 <% end %>
