@@ -1,4 +1,5 @@
-Feature: Käyttäjä pystyy luomaan viitteen selainta käyttämällä
+Feature: Käyttäjä pystyy luomaan viitteitä, viitetyyppejä ja attribuutteja selainta käyttämällä
+
   Scenario: Käyttäjä luo viitteen järjestelmään pakolliset tiedot täytettynä
     Given Lue seeds.rb
     When Käyttäjä siirtyy sivulle "/refs"
@@ -25,11 +26,11 @@ Feature: Käyttäjä pystyy luomaan viitteen selainta käyttämällä
     Then Käyttäjä saa ilmoituksen "Uusi viitetyyppi luotu onnistuneesti."
 
   Scenario: Käyttäjä luo attribuutin järjestelmään pakolliset tiedot täytettynä
-    When Käyttäjä siirtyy sivulle "/ref_attributes"
+    When Käyttäjä siirtyy sivulle "/ref_attributes  "
     And Käyttäjä painaa linkkiä "Luo uusi attribuutti"
     And Täyttää kentät seuraavasti
       |kentta|arvo|
-      |refattribute[name]|testi1|
+      |ref_attribute[name]|testi1|
     And Painaa nappia "Tallenna"
     Then Käyttäjä saa ilmoituksen "Uusi viitetyyppi luotu onnistuneesti."
 

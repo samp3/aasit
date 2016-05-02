@@ -81,7 +81,7 @@ Feature: Käyttäjänä haluaisin saada virheilmoituksen tilanteessa, jossa teen
     And Käyttäjä painaa linkkiä "Luo uusi attribuutti"
     And Täyttää kentät seuraavasti
       |kentta|arvo|
-      |refattribute[name]||
+      |ref_attribute[name]||
     And Painaa nappia "Tallenna"
     Then Käyttäjä saa ilmoituksen "Name can't be blank"
 
