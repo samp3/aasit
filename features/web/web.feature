@@ -21,3 +21,10 @@ Feature: Käyttäjänä pystyn käyttämään järjestelmää selaimella, jotta 
       Then Käyttäjä ohjataan sivulle "/refs/W04"
       And Käyttäjä saa ilmoituksen "Viitteeseen lisätty tieto onnistuneesti."
 
+  Scenario: Käyttäjä lisää kentän attribuutille
+    Given Lue seeds.rb
+    When Käyttäjä siirtyy sivulle "/reftypes"
+    And Käyttäjä painaa linkkiä "misc"
+    And Käyttäjä painaa linkkiä "Lisää kenttä"
+    And Painaa nappia "Tallenna"
+    Then Käyttäjä saa ilmoituksen "Ref type field was successfully created."
