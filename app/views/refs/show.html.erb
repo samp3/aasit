@@ -12,7 +12,7 @@
 <hr>
 <h2>Sisältö</h2>
 <h3>Pakolliset kentät</h3>
-<table>
+<table class="table table-striped">
   <tr>
     <th>Kenttä</th>
     <th>Arvo</th>
@@ -32,7 +32,7 @@
       </tr>
 
     <% end %>
-  </table>
+  </table class="table table-striped">
 <% if @category2.length > 0 %>
 <h3>jompikumpi-pakolliset</h3>
     <table>
@@ -58,7 +58,7 @@
     </table>
 <% end %>
 <h3>Vapaavalintaiset kentät</h3>
-<table>
+<table class="table table-striped">
   <tr>
     <th>Kenttä</th>
     <th>Arvo</th>
@@ -86,7 +86,7 @@
 <p>
 <hr>
   <%= link_to 'Muokkaa viitteen tietoja', edit_ref_path(@ref) %> |
-  <%= link_to 'Back', refs_path %>
+  <%= link_to 'Takaisin', refs_path %>
 
 </p>
 

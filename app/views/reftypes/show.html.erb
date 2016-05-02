@@ -4,7 +4,7 @@
   <h1>  <%= @reftype.name %></h1>
   <%= link_to 'Lisää kenttä', '/reftypes/'+@reftype.id.to_s+'/new_field'%>
   <h2>Pakolliset kentät</h2>
-  <table>
+  <table class="table table-striped">
     <tr>
       <th>Kenttä</th>
       <th></th>
@@ -17,7 +17,7 @@
     </tr>
 
     <% end %>
-  </table>
+  </table class="table table-striped">
   <h2>Pakolliset kentätä (ja/tai)</h2>
 <table>
 <% @cat2.each do |a| %>
@@ -29,7 +29,7 @@
 <% end %>
 </table>
 <h2>Pakolliset kentätä (ja/tai)</h2>
-<table>
+<table class="table table-striped">
   <% @cat3.each do |a| %>
       <tr>
         <td><%= a.name %></td>
@@ -39,7 +39,7 @@
   <% end %>
 </table>
   <h2>Vapaavalintaiset kentät</h2>
-<table>
+<table class="table table-striped">
 <% @optional.each do |a| %>
     <tr>
       <td><%= a.name %></td>

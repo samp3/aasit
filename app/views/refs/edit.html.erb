@@ -1,6 +1,5 @@
-<h1>Editing Ref</h1>
+<h1>Muokkaa viitteen nimeä</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @ref %> |
-<%= link_to 'Back', refs_path %>
+<%= link_to 'Takaisin', '/refs/'+@ref.slug %>
