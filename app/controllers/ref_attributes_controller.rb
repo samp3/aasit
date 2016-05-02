@@ -28,7 +28,7 @@ class RefAttributesController < ApplicationController
 
     respond_to do |format|
       if @ref_attribute.save
-        format.html { redirect_to @ref_attribute, notice: 'Ref attribute was successfully created.' }
+        format.html { redirect_to @ref_attribute, notice: 'Uusi viitetyyppi luotu onnistuneesti.' }
         format.json { render :show, status: :created, location: @ref_attribute }
       else
         format.html { render :new }
