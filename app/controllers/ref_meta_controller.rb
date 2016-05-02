@@ -33,7 +33,7 @@ class RefMetaController < ApplicationController
   # GET /ref_meta/1/edit
   def edit
     @refs = Ref.where("id = :id", {id: @ref_metum.ref_id})
-    @attrs = Reftype.where(id: @ref_metum.ref.reftype_id)
+    @attrs = RefAttribute.where(id: @ref_metum.ref_attribute_id)
 
   end
 
@@ -64,6 +64,8 @@ class RefMetaController < ApplicationController
         format.html { redirect_to '/refs/'+@ref_metum.ref.slug, notice: 'Tiedot päivitettiin onnistuneesti' }
         format.json { render :show, status: :ok, location: @ref_metum }
       else
+        @attrs = RefAttribute.where(id: @ref_metum.ref_attribute_id)
+        @refs = Ref.where("id = :id", {id: @ref_metum.ref_id})
         format.html { render :edit }
         format.json { render json: @ref_metum.errors, status: :unprocessable_entity }
       end

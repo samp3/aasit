@@ -2,6 +2,7 @@
 
 <p>
   <h1>  <%= @reftype.name %></h1>
+<%= link_to 'Muokkaa nimeä', edit_reftype_path(@reftype) %> |
   <%= link_to 'Lisää kenttä', '/reftypes/'+@reftype.id.to_s+'/new_field'%>
   <h2>Pakolliset kentät</h2>
   <table class="table table-striped">
@@ -51,5 +52,5 @@
 </table>
 </p>
 
-<%= link_to 'Muokkaa tyyppiä', edit_reftype_path(@reftype) %> |
+
 <%= link_to 'Takaisin', reftypes_path %>
