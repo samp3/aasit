@@ -38,3 +38,10 @@ Then(/^saan listan viitteen "([^"]*)" attribuuteista ja arvoista$/) do |slug|
   end
 
 end
+Then(/^hän saa lista riveistä$/) do
+  RefMetum.all.each do |rm|
+    page.should have_content(rm.value)
+    page.should have_content(rm.ref.slug)
+    page.should have_content(rm.ref_attribute.name)
+  end
+end

@@ -84,4 +84,22 @@ Feature: Käyttäjänä haluaisin saada virheilmoituksen tilanteessa, jossa teen
       |ref_attribute[name]||
     And Painaa nappia "Tallenna"
     Then Käyttäjä saa ilmoituksen "Name can't be blank"
+  Scenario: Käyttäjä pystyy muokkaamaan olemassaolevia tyyppiä ja antaa tyhjän nimen
+    Given Lue seeds.rb
+    When Käyttäjä siirtyy sivulle "/reftypes"
+    And Käyttäjä painaa linkkiä "Muokkaa"
+    And Täyttää kentät seuraavasti
+      |kentta|arvo|
+      |reftype[name]||
+    And Painaa nappia "Tallenna"
+    And Käyttäjä saa ilmoituksen "Name can't be blank"
+  Scenario: Käyttäjä pystyy muokkaamaan olemassaolevia tyyppiä
+    Given Lue seeds.rb
+    When Käyttäjä siirtyy sivulle "/ref_attributes"
+    And Käyttäjä painaa linkkiä "address"
+    And Täyttää kentät seuraavasti
+      |kentta|arvo|
+      |ref_attribute[name]||
+    And Painaa nappia "Tallenna"
+    And Käyttäjä saa ilmoituksen "Name can't be blank"
 

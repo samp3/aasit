@@ -27,3 +27,7 @@ Feature: Käyttäjänä pystyn listaamaan järjestelmään tallennetut viitteet,
     When Käyttäjä siirtyy sivulle "/refs"
     And Käyttäjä painaa linkkiä "W04"
     Then saan listan viitteen "W04" attribuuteista ja arvoista
+  Scenario: Pystyn listaamaan järjestelmässä olevien viitteiden rivit
+    Given Lue seeds.rb
+    When Käyttäjä siirtyy sivulle "/ref_meta"
+    Then hän saa lista riveistä
