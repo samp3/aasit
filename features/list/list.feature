@@ -1,25 +1,29 @@
+
 Feature: Käyttäjänä pystyn listaamaan järjestelmään tallennetut viitteet, attribuutit, attribuuttien arvot ja viitteiden tyypit
 
-  Scenario: Pystyn listaamaan "refs"
-    Given Järjestelmässä on viite, jonka lyhytnimi on "ÄÖ01!" ja tyyppi "article"
-    When Pyydän järjestelmältä listan viitteistä
+  Scenario: Pystyn listaamaan viitteet
+    Given Järjestelmässä on artikkeli lyhytnimellä "Moi01"
+    When Käyttäjä siirtyy sivulle "/refs"
     Then Saan listan viitteistä
 
   Scenario: Pystyn listaamaan viitteiden tyypit
-    Given Järjestelmässä on viite, jonka lyhytnimi on "ÄÖ01!" ja tyyppi "article"
-    When Pyydän järjestelmältä listan viitteistä
-    Then Saan listan viitteistä
+    Given Lue seeds.rb
+    When Käyttäjä siirtyy sivulle "/reftypes"
+    Then Saan listan viitetyypeistä
 
   Scenario: Pystyn listaamaan attribuutit
-    Given Järjestelmässä on viite, jonka lyhytnimi on "ÄÖ01!" ja tyyppi "article"
-    Given Järjestelmässä on attribuutti "author"
-    Given Artikkelilla "ÄÖ01!" on attribuutti "author" jonka arvo "testi1"
-    When Pyydän järjestelmältä listan viitteistä
-    Then Saan listan viitteistä
+    Given Lue seeds.rb
+    When Käyttäjä siirtyy sivulle "/ref_attributes"
+    Then Saan listan attribuuteista
 
+  Scenario:  Pystyn listaamaan viitetyypin takana olevat attribuutit
+    Given Lue seeds.rb
+    When Käyttäjä siirtyy sivulle "/reftypes"
+    And Käyttäjä painaa linkkiä "article"
+    Then Saan listan tyypin "article" attribuuteista
 
   Scenario: Pystyn listaamaan viitteille tallennettujen attribuuttien arvot
-    Given Järjestelmässä on viite, jonka lyhytnimi on "ÄÖ01!" ja tyyppi "article"
-    Given Järjestelmässä on attribuutti "author"
-    Given Artikkelilla "ÄÖ01!" on attribuutti "author" jonka arvo "testi1"
-
+    Given Lue seeds.rb
+    When Käyttäjä siirtyy sivulle "/refs"
+    And Käyttäjä painaa linkkiä "W04"
+    Then saan listan viitteen "W04" attribuuteista ja arvoista

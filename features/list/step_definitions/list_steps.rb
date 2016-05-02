@@ -1,38 +1,40 @@
-
-Given(/^Järjestelmässä on attribuutti "([^"]*)"$/) do |name|
-  RefAttribute.delete_all
-  expect {
-    params = { name: name, id:1}
-    post "/ref_attributes.json", params.to_json,
-         { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
-
-  }.to change{RefAttribute.count}.by(1)
-end
-Given(/^Artikkelilla "([^"]*)" on attribuutti "([^"]*)" jonka arvo "([^"]*)"$/) do |slug, attribute_name, valu|
-  expect {
-    params = { ref_attribute_id: RefAttribute.find_by_name(attribute_name).id, ref_id:  Ref.find_by_slug(slug).id, value: valu}
-    post "/ref_meta.json", params.to_json,
-         { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
-  }.to change{RefMetum.count}.by(1)
-end
-
-When(/^Pyydän järjestelmältä listan viitteistä$/) do
-
-    get "/refs.json", {}, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json' }
-
-end
 Then(/^Saan listan viitteistä$/) do
 
-  lastRef = Ref.last
-  c = Hash.new
+  Ref.all.each do |ref|
+    page.should have_content(ref.slug)
+  end
 
-  c['id'] = lastRef.id
-  c['slug'] = lastRef.slug
-  c['reftype_id'] = lastRef.reftype_id
+end
+Then(/^Saan listan viitetyypeistä$/) do
 
-  res = JSON.parse last_response.body
-  res = res[0]
-  res.delete('url')
-  expect(res).to eq(c)
+  Reftype.all.each do |type|
+    page.should have_content(type.name)
+  end
+
+end
+Then(/^Saan listan attribuuteista$/) do
+
+  RefAttribute.all.each do |attribute|
+    page.should have_content(attribute.name)
+  end
+
+end
+Then(/^Saan listan tyypin "([^"]*)" attribuuteista$/) do |type|
+  Reftype.find_by_name(type).ref_attributes.each do |attribute|
+    page.should have_content(attribute.name)
+  end
+
+end
+Then(/^saan listan viitteen "([^"]*)" attribuuteista ja arvoista$/) do |slug|
+  ref = Ref.find_by_slug(slug)
+
+  RefTypeField.where(reftype_id:ref.reftype.id).each do |f|
+    attribute = f.ref_attribute
+    attribute.ref_metum.where(ref_id: ref.id ).each do |m|
+      page.should have_content(m.value)
+      page.should have_content(attribute.name)
+    end
+
+  end
 
 end
