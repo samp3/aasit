@@ -103,3 +103,17 @@ Feature: Käyttäjänä haluaisin saada virheilmoituksen tilanteessa, jossa teen
     And Painaa nappia "Tallenna"
     And Käyttäjä saa ilmoituksen "Name can't be blank"
 
+  Scenario: Käyttäjä lisää kentän ilman arvoa
+    Given Lue seeds.rb
+    When Käyttäjä siirtyy sivulle "/refs"
+    And Käyttäjä painaa linkkiä "W04"
+    Then Käyttäjä ohjataan sivulle "/refs/W04"
+    When Käyttäjä painaa linkkiä "Lisää tieto"
+    Then Käyttäjä ohjataan sivulle "/ref_meta/article/W04"
+    When Käyttäjä valitsee kentäksi "key"
+    And Täyttää kentät seuraavasti
+      |kentta|arvo|
+      |ref_metum[value]||
+    And Painaa nappia "Lähetä"
+    And Käyttäjä saa ilmoituksen "Value can't be blank"
+

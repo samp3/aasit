@@ -12,7 +12,7 @@
     </tr>
     <% @required.each do |a| %>
     <tr>
-      <td><%= a.name %></td>
+      <td><%= link_to a.name, edit_ref_type_field_path(a.ref_type_fields[0]) %></td>
       <td><%= link_to 'Muokkaa', edit_ref_attribute_path(a) %> </td>
       <td><%= link_to 'Poista', a, method: :delete, data: { confirm: 'Oletko varma?' } %></td>
     </tr>

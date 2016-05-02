@@ -28,6 +28,7 @@ class RefsController < ApplicationController
   end
 
   # GET /refs/new
+  # :nocov:
   def new
     @ref = Ref.new
     reftype = Reftype.first
@@ -48,6 +49,7 @@ class RefsController < ApplicationController
 
   # POST /refs
   # POST /refs.json
+  # :nocov:
   def create
     @ref = Ref.new(ref_params)
     @types = Reftype.all
