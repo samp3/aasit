@@ -52,6 +52,7 @@ group :test do
    gem 'cucumber-rails', require: false
    gem 'capybara'
    gem 'selenium-webdriver'
+   gem "chromedriver-helper"
    gem 'factory_girl_rails'
    gem 'database_cleaner'
    gem 'rspec-expectations'

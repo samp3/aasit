@@ -13,6 +13,7 @@ class ReftypesController < ApplicationController
     @required = @reftype.requiredFields
     @optional = @reftype.optionalFields
     @cat2 = @reftype.required2Fields
+    @cat3 = @reftype.required3Fields
   end
 
   # GET /reftypes/new
@@ -31,7 +32,7 @@ class ReftypesController < ApplicationController
 
     respond_to do |format|
       if @reftype.save
-        format.html { redirect_to @reftype, notice: 'Reftype was successfully created.' }
+        format.html { redirect_to @reftype, notice: 'Uusi viitetyyppi luotu onnistuneesti.' }
         format.json { render :show, status: :created, location: @reftype }
       else
         format.html { render :new }

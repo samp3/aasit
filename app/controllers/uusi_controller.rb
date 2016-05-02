@@ -70,11 +70,4 @@ class UusiController < ApplicationController
         render 'new' , notice: 'Pakollista tietoa puuttuu..'
       end
   end
-  end
-
-  def ref_params
-    params.require(:ref).permit!
-  end
-  def yolo
-
 end

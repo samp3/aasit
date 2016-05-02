@@ -28,9 +28,19 @@
     </tr>
 <% end %>
 </table>
+<h2>Pakolliset kentätä (ja/tai)</h2>
+<table>
+  <% @cat3.each do |a| %>
+      <tr>
+        <td><%= a.name %></td>
+        <td><%= link_to 'Muokkaa', edit_ref_attribute_path(a) %> </td>
+        <td><%= link_to 'Poista', a, method: :delete, data: { confirm: 'Oletko varma?' } %></td>
+      </tr>
+  <% end %>
+</table>
   <h2>Vapaavalintaiset kentät</h2>
 <table>
-<% @required.each do |a| %>
+<% @optional.each do |a| %>
     <tr>
       <td><%= a.name %></td>
       <td><%= link_to 'Muokkaa', edit_ref_attribute_path(a) %> </td>

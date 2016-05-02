@@ -1,22 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Ref Attributes</h1>
+<h1>Attribuutit</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
+      <th>Nimi</th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @ref_attributes.each do |ref_attribute| %>
       <tr>
-        <td><%= ref_attribute.name %></td>
-        <td><%= link_to 'Show', ref_attribute %></td>
-        <td><%= link_to 'Edit', edit_ref_attribute_path(ref_attribute) %></td>
-        <td><%= link_to 'Destroy', ref_attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=  link_to ref_attribute.name,edit_ref_attribute_path(ref_attribute) %></td>
+        <td><%= link_to 'Poista', ref_attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Ref attribute', new_ref_attribute_path %>
+<%= link_to 'Luo uusi attribuutti', new_ref_attribute_path %>
