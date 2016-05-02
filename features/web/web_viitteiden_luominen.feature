@@ -26,7 +26,7 @@ Feature: Käyttäjä pystyy luomaan viitteitä, viitetyyppejä ja attribuutteja 
     Then Käyttäjä saa ilmoituksen "Uusi viitetyyppi luotu onnistuneesti."
 
   Scenario: Käyttäjä luo attribuutin järjestelmään pakolliset tiedot täytettynä
-    When Käyttäjä siirtyy sivulle "/ref_attributes  "
+    When Käyttäjä siirtyy sivulle "/ref_attributes"
     And Käyttäjä painaa linkkiä "Luo uusi attribuutti"
     And Täyttää kentät seuraavasti
       |kentta|arvo|
