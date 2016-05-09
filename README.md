@@ -16,6 +16,6 @@
 [Sprint 3 backlog](https://docs.google.com/spreadsheets/d/1_LbF91-R9yexl-rieCrdwtKzKxY0o2hEt3J-u5UiIBM/pubhtml?gid=179077994&single=true)
 ##Sprint 4
 [Burndown-käyrä](https://docs.google.com/spreadsheets/d/1_LbF91-R9yexl-rieCrdwtKzKxY0o2hEt3J-u5UiIBM/pubchart?oid=1556928865&format=interactive)
-[Loppuraportti](https://docs.google.com/document/d/1445GjquRYsnQrs4Fi26Hu_3DHI8aP72xlC5Z0KXeGcU/pub)
-
 [Sprint 4 backlog](https://docs.google.com/spreadsheets/d/1_LbF91-R9yexl-rieCrdwtKzKxY0o2hEt3J-u5UiIBM/pubhtml?gid=421901433&single=true)
+##Loppuraportti
+:beers:[Loppuraportti](https://docs.google.com/document/d/1445GjquRYsnQrs4Fi26Hu_3DHI8aP72xlC5Z0KXeGcU/pub)
